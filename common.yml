@@ -727,27 +727,27 @@ functions:
           set -e
           ./bin/mongo --nodb --eval 'var d; assert.soon(function(x){try{d = new Mongo("localhost:${mongod_port}"); return true} catch(e){return false}}, "timed out connection");d.setLogLevel(5, "write");'
 
-  "create repl_set" :
-    - command: shell.exec
-      params:
-        working_dir: src/github.com/mongodb/mongo-tools
-        background: true
-        script: |
-          set -x
-          set -v
-          set -e
-          echo "starting repl set"
-          mkdir -p /data/db/
-          PATH=./bin:$PATH ./bin/mongo ${mongo_args} --nodb --eval 'TestData = new Object(); TestData.minPort="${mongod_port}"; var repl = new ReplSetTest({nodes:3, name:"repltester"});repl.startSet();repl.initiate();repl.awaitSecondaryNodes();while(true){sleep(1000);}'
-
-    - command: shell.exec
-      params:
-        working_dir: src/github.com/mongodb/mongo-tools
-        script: |
-          set -x
-          set -v
-          set -e
-          ./bin/mongo ${mongo_args} --nodb --eval 'assert.soon(function(x){try{var d = new Mongo("localhost:${mongod_port}"); return true} catch(e){return false}}, "timed out connection")'
+#  "create repl_set" :
+#    - command: shell.exec
+#      params:
+#        working_dir: src/github.com/mongodb/mongo-tools
+#        background: true
+#        script: |
+#          set -x
+#          set -v
+#          set -e
+#          echo "starting repl set"
+#          mkdir -p /data/db/
+#          PATH=./bin:$PATH ./bin/mongo ${mongo_args} --nodb --eval 'TestData = new Object(); TestData.minPort="${mongod_port}"; var repl = new ReplSetTest({nodes:3, name:"repltester"});repl.startSet();repl.initiate();repl.awaitSecondaryNodes();while(true){sleep(1000);}'
+#
+#    - command: shell.exec
+#      params:
+#        working_dir: src/github.com/mongodb/mongo-tools
+#        script: |
+#          set -x
+#          set -v
+#          set -e
+#          ./bin/mongo ${mongo_args} --nodb --eval 'assert.soon(function(x){try{var d = new Mongo("localhost:${mongod_port}"); return true} catch(e){return false}}, "timed out connection")'
 
 pre:
   - command: shell.exec
@@ -936,7 +936,6 @@ tasks:
           mongo_version: "4.0"
       - func: "start mongod cluster"
       - func: "wait for mongod to be ready"
-      - func: "create repl_set"
       - func: "run tool integration tests"
         vars:
           INT_TEST: "true"
