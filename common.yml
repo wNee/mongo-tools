@@ -18,6 +18,7 @@ mongo_tools_variables:
       - name: integration-3.6
       - name: integration-4.0
       - name: integration-4.0-auth
+      - name: integration-4.0-cluster
       - name: integration-4.2
       - name: integration-4.2-auth
       - name: qa-tests-3.2
@@ -37,6 +38,7 @@ mongo_tools_variables:
       - name: integration-3.6
       - name: integration-4.0
       - name: integration-4.0-auth
+      - name: integration-4.0-cluster
       - name: integration-4.2
       - name: integration-4.2-auth
       # Disabled due to TOOLS-2119
@@ -922,6 +924,20 @@ tasks:
         vars:
           INT_TEST: "true"
           AUTH_TEST: "true"
+
+  - name: integration-4.0-cluster
+    commands:
+      - func: "fetch source"
+      - command: expansions.update
+      - func: "download mongod"
+        vars:
+          mongo_version: "4.0"
+      - func: "start mongod cluster"
+      - func: "wait for mongod to be ready"
+      - func: "create repl_set"
+      - func: "run tool integration tests"
+        vars:
+          INT_TEST: "true"
 
   - name: integration-4.2
     commands:
