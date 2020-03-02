@@ -144,6 +144,72 @@ func (bd *BSONDump) JSON() (int, error) {
 	return numFound, nil
 }
 
+type OplogTimestamp struct {
+	Ts  	Ts 		`json:"ts"`
+	Wall  	Wall    `json:"wall"`
+}
+type Ts struct {
+	Timestamp Timestamp `json:"$timestamp"`
+}
+type Timestamp struct {
+	T int64 `json:"t"`
+	I int64 `json:"i"`
+}
+type Wall struct {
+	Date string `json:"$date"`
+}
+
+// HeadTailTimestamp iterates only through the BSON file with timestamp, such as oplog.bson
+// It returns head and tail timestamp
+func (bd *BSONDump) HeadTailTimestamp() ([]OplogTimestamp, error) {
+	numFound := 0
+
+	if bd.BSONSource == nil {
+		panic("Tried to call JSON() before opening file")
+	}
+
+	decodedStream := db.NewDecodedBSONSource(bd.BSONSource)
+
+	var raw bson.Raw
+	var tail bson.Raw
+	hasData := false
+	result := make([]OplogTimestamp, 0, 2)
+	for decodedStream.Next(&raw) {
+		if numFound == 0 {
+			if bytes, err := formatJSON(&raw, bd.BSONDumpOptions.Pretty); err != nil {
+				log.Logvf(log.Always, "unable to dump document %v: %v", numFound+1, err)
+			} else {
+				oplongTimestamp := OplogTimestamp{}
+				err := json.Unmarshal(bytes, &oplongTimestamp)
+				if err != nil {
+					return nil, err
+				}
+				result = append(result, oplongTimestamp)
+			}
+		}
+		hasData = true
+		tail = raw
+		numFound++
+	}
+	if hasData {
+		if bytes, err := formatJSON(&tail, bd.BSONDumpOptions.Pretty); err != nil {
+			log.Logvf(log.Always, "unable to dump document %v: %v", numFound+1, err)
+		} else {
+			oplongTimestamp := OplogTimestamp{}
+			err := json.Unmarshal(bytes, &oplongTimestamp)
+			if err != nil {
+				return result, err
+			}
+			result = append(result, oplongTimestamp)
+		}
+	}
+
+	if err := decodedStream.Err(); err != nil {
+		return result, err
+	}
+	return result, nil
+}
+
 // Debug iterates through the BSON file and for each document it finds,
 // recursively descends into objects and arrays and prints a human readable
 // BSON representation containing the type and size of each field.
