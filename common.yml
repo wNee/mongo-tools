@@ -581,7 +581,7 @@ functions:
         set -x
         set -v
         SECS=0
-        while  ; do
+        while true; do
             set -o verbose
             ./bin/mongo${extension} ${mongo_args} --eval 'rs.isMaster()["ismaster"];'
           if ["$?" = "0" ]; then
