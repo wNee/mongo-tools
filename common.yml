@@ -573,31 +573,6 @@ functions:
             fi
         done
 
-  "wait for mongod to be ready no port":
-    command: shell.exec
-    params:
-      working_dir: src/github.com/mongodb/mongo-tools
-      script: |
-        set -x
-        set -v
-        SECS = 0
-        while true ; do
-            set -o verbose
-            ./bin/mongo${extension} ${mongo_args_no_port} --eval 'true;'
-            if [ "$?" = "0" ]; then
-                echo "mongod ready";
-                exit 0
-            else
-                SECS=`expr $SECS + 1`
-                if [ $SECS -gt 20 ]; then
-                    echo "mongod not ready after 20 seconds"
-                    exit 1
-                fi
-                echo "waiting for mongod ( ${mongo_args_no_port} ) to be ready..."  ;
-                sleep 1 ;
-            fi
-        done
-
   "upload tool":
     command: s3.put
     params:
@@ -763,7 +738,7 @@ functions:
           set -e
           echo "starting repl set"
           mkdir -p /data/db/
-          PATH=./bin:$PATH ./bin/mongo ${mongo_args_no_port} --nodb --eval 'TestData = new Object(); TestData.minPort="${mongod_port}"; var repl = new ReplSetTest({nodes:3, name:"repltester"});repl.startSet();repl.initiate();repl.awaitSecondaryNodes();while(true){sleep(1000);}'
+          PATH=./bin:$PATH ./bin/mongo ${mongo_args} --nodb --eval 'TestData = new Object(); TestData.minPort="${mongod_port}"; var repl = new ReplSetTest({nodes:3, name:"repltester"});repl.startSet();repl.initiate();repl.awaitSecondaryNodes();while(true){sleep(1000);}'
 
     - command: shell.exec
       params:
@@ -772,7 +747,7 @@ functions:
           set -x
           set -v
           set -e
-          ./bin/mongo ${mongo_args_no_port} --nodb --eval 'assert.soon(function(x){try{var d = new Mongo("localhost:${mongod_port}"); return true} catch(e){return false}}, "timed out connection")'
+          ./bin/mongo ${mongo_args} --nodb --eval 'assert.soon(function(x){try{var d = new Mongo("localhost:${mongod_port}"); return true} catch(e){return false}}, "timed out connection")'
 
 pre:
   - command: shell.exec
@@ -960,7 +935,7 @@ tasks:
         vars:
           mongo_version: "4.0"
       - func: "start mongod cluster"
-      - func: "wait for mongod to be ready no port"
+      - func: "wait for mongod to be ready"
       - func: "create repl_set"
       - func: "run tool integration tests"
         vars:
