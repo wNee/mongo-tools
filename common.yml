@@ -583,14 +583,14 @@ functions:
         SECS=0
         while true; do
             set -o verbose
-            ./bin/mongo${extension} ${mongo_args} --eval 'rs.isMaster()["ismaster"];'
-          if ["$?" = "0" ]; then
+            PRIM=./bin/mongo${extension} ${mongo_args} --eval 'rs.isMaster()["ismaster"];'
+          if [ $PRIM == true ]; then
               echo "primary ready";
               exit 0
           else
               SECS=`expr $SECS + 1`
-              if [ $SECS -gt 20 ]; then
-                  echo "primary not ready after 20 seconds"
+              if [ $SECS -gt 40 ]; then
+                  echo "primary not ready after 40 seconds"
                   exit 1
               fi
               echo "waiting for primary to be ready..." ;
