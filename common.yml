@@ -573,6 +573,31 @@ functions:
             fi
         done
 
+  "wait for mongod to be ready no port":
+    command: shell.exec
+    params:
+      working_dir: src/github.com/mongodb/mongo-tools
+      script: |
+        set -x
+        set -v
+        SECS = 0
+        while true ; do
+            set -o verbose
+            ./bin/mongo${extension} ${mongo_args_no_port} --eval 'true;'
+            if [ "$?" = "0" ]; then
+                echo "mongod ready";
+                exit 0
+            else
+                SECS=`expr $SECS + 1`
+                if [ $SECS -gt 20 ]; then
+                    echo "mongod not ready after 20 seconds"
+                    exit 1
+                fi
+                echo "waiting for mongod ( ${mongo_args_no_port} ) to be ready..."  ;
+                sleep 1 ;
+            fi
+        done
+
   "upload tool":
     command: s3.put
     params:
@@ -935,7 +960,7 @@ tasks:
         vars:
           mongo_version: "4.0"
       - func: "start mongod cluster"
-      - func: "wait for mongod to be ready"
+      - func: "wait for mongod to be ready no port"
       - func: "create repl_set"
       - func: "run tool integration tests"
         vars:
