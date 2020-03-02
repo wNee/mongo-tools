@@ -547,7 +547,6 @@ functions:
         mkdir -p mongodb/db_files
         echo "Starting mongod cluster..."
         PATH=$PWD/bin:$PATH ./bin/mongod${extension}  --port ${mongod_port} ${mongod_args} ${additional_args} --dbpath mongodb/db_files --setParameter=enableTestCommands=1 --replSet repltester
-        sleep 30
 
   "wait for mongod to be ready":
     command: shell.exec
@@ -556,7 +555,7 @@ functions:
       script: |
         set -x
         set -v
-        SECS = 0
+        SECS=0
         while true ; do
             set -o verbose
             ./bin/mongo${extension} ${mongo_args} --eval 'true;'
@@ -573,6 +572,31 @@ functions:
                 sleep 1 ;
             fi
         done
+
+  "wait for primary":
+    command: shell.exec
+    params:
+      working_dir: src/github.com/mongodb/mongo-tools
+      script: |
+        set -x
+        set -v
+        SECS=0
+        while  ; do
+            set -o verbose
+            ./bin/mongo${extension} ${mongo_args} --eval 'rs.isMaster()["ismaster"];'
+        if ["$?" = "0" ]; then
+            echo "primary ready";
+            exit 0
+        else
+            SECS=`expr $SECS + 1`
+            if [ $SECS -gt 20 ]; then
+                echo "primary not ready after 20 seconds"
+                exit 1
+            fi
+            echo "waiting for primary to be ready..." ;
+            sleep 1 ;
+        fi
+      done
 
   "upload tool":
     command: s3.put
@@ -937,6 +961,7 @@ tasks:
           mongo_version: "4.0"
       - func: "start mongod cluster"
       - func: "wait for mongod to be ready"
+      - func: "wait for primary"
       - func: "run tool integration tests"
         vars:
           INT_TEST: "true"
