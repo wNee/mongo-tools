@@ -547,7 +547,7 @@ functions:
         mkdir -p mongodb/db_files
         echo "Starting mongod cluster..."
         PATH=$PWD/bin:$PATH ./bin/mongod${extension}  --port ${mongod_port} ${mongod_args} ${additional_args} --dbpath mongodb/db_files --setParameter=enableTestCommands=1 --replSet repltester
-        sleep 10
+        sleep 30
 
   "wait for mongod to be ready":
     command: shell.exec
