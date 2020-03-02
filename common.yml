@@ -201,6 +201,7 @@ mongo_tools_variables:
       mongod_port: 33333
     ssl: &mongo_ssl_startup_args
       mongo_args: "--port 33333 --ssl --sslCAFile ./testdata/certs/ca.pem --sslPEMKeyFile ./testdata/certs/server.pem --sslAllowInvalidCertificates"
+      mongo_args_no_port: "--ssl --sslCAFile ./testdata/certs/ca.pem --sslPEMKeyFile ./testdata/certs/server.pem --sslAllowInvalidCertificates"
       mongod_port: 33333
 
 functions:
@@ -737,7 +738,7 @@ functions:
           set -e
           echo "starting repl set"
           mkdir -p /data/db/
-          PATH=./bin:$PATH ./bin/mongo ${mongo_args} --nodb --eval 'TestData = new Object(); TestData.minPort="${mongod_port}"; var repl = new ReplSetTest({nodes:3, name:"repltester"});repl.startSet();repl.initiate();repl.awaitSecondaryNodes();while(true){sleep(1000);}'
+          PATH=./bin:$PATH ./bin/mongo ${mongo_args_no_port} --nodb --eval 'TestData = new Object(); TestData.minPort="${mongod_port}"; var repl = new ReplSetTest({nodes:3, name:"repltester"});repl.startSet();repl.initiate();repl.awaitSecondaryNodes();while(true){sleep(1000);}'
 
     - command: shell.exec
       params:
