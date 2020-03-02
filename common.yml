@@ -584,19 +584,19 @@ functions:
         while  ; do
             set -o verbose
             ./bin/mongo${extension} ${mongo_args} --eval 'rs.isMaster()["ismaster"];'
-        if ["$?" = "0" ]; then
-            echo "primary ready";
-            exit 0
-        else
-            SECS=`expr $SECS + 1`
-            if [ $SECS -gt 20 ]; then
-                echo "primary not ready after 20 seconds"
-                exit 1
-            fi
-            echo "waiting for primary to be ready..." ;
-            sleep 1 ;
-        fi
-      done
+          if ["$?" = "0" ]; then
+              echo "primary ready";
+              exit 0
+          else
+              SECS=`expr $SECS + 1`
+              if [ $SECS -gt 20 ]; then
+                  echo "primary not ready after 20 seconds"
+                  exit 1
+              fi
+              echo "waiting for primary to be ready..." ;
+              sleep 1 ;
+          fi
+        done
 
   "upload tool":
     command: s3.put
