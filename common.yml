@@ -934,7 +934,7 @@ tasks:
           mongo_version: "4.0"
       - func: "start mongod cluster"
       - func: "wait for mongod to be ready"
-      - func: "create repl_set"
+#      - func: "create repl_set"
       - func: "run tool integration tests"
         vars:
           INT_TEST: "true"
