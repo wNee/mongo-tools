@@ -129,6 +129,7 @@ mongo_tools_variables:
       - name: integration-3.6
       - name: integration-4.0
       - name: integration-4.0-auth
+      - name: integration-4.0-cluster
       - name: integration-4.2
       - name: integration-4.2-auth
       #- name: kerberos
@@ -201,7 +202,6 @@ mongo_tools_variables:
       mongod_port: 33333
     ssl: &mongo_ssl_startup_args
       mongo_args: "--port 33333 --ssl --sslCAFile ./testdata/certs/ca.pem --sslPEMKeyFile ./testdata/certs/server.pem --sslAllowInvalidCertificates"
-      mongo_args_no_port: "--ssl --sslCAFile ./testdata/certs/ca.pem --sslPEMKeyFile ./testdata/certs/server.pem --sslAllowInvalidCertificates"
       mongod_port: 33333
 
 functions:
