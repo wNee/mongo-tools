@@ -8,8 +8,8 @@ package testutil
 
 import (
 	"fmt"
-	"github.com/mongodb/mongo-tools/common/options"
-	"github.com/mongodb/mongo-tools/common/testtype"
+	"github.com/wNee/mongo-tools/common/options"
+	"github.com/wNee/mongo-tools/common/testtype"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"os"

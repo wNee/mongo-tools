@@ -68,8 +68,8 @@ set_goenv() {
 
     # Derive GOPATH from current directory, but error if the current diretory
     # doesn't look like a GOPATH structure.
-    if expr "$(pwd)" : '.*src/github.com/mongodb/mongo-tools$' > /dev/null; then
-        export GOPATH=$(echo $(pwd) | perl -pe 's{src/github.com/mongodb/mongo-tools}{}')
+    if expr "$(pwd)" : '.*src/github.com/wNee/mongo-tools$' > /dev/null; then
+        export GOPATH=$(echo $(pwd) | perl -pe 's{src/github.com/wNee/mongo-tools}{}')
         if expr "$UNAME_S" : 'CYGWIN' > /dev/null; then
             export GOPATH=$(cygpath -w "$GOPATH")
         fi
@@ -84,7 +84,7 @@ set_goenv() {
 print_ldflags() {
     VersionStr="$(git describe)"
     Gitspec="$(git rev-parse HEAD)"
-    importpath="github.com/mongodb/mongo-tools/common/options"
+    importpath="github.com/wNee/mongo-tools/common/options"
     echo "-X ${importpath}.VersionStr=${VersionStr} -X ${importpath}.Gitspec=${Gitspec}"
 }
 

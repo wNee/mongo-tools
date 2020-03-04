@@ -8,7 +8,7 @@ package json
 
 import (
 	"fmt"
-	"github.com/mongodb/mongo-tools/common/util"
+	"github.com/wNee/mongo-tools/common/util"
 	"reflect"
 )
 

@@ -12,9 +12,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mongodb/mongo-tools/common/testtype"
-	"github.com/mongodb/mongo-tools/mongostat/stat_consumer/line"
-	"github.com/mongodb/mongo-tools/mongostat/status"
+	"github.com/wNee/mongo-tools/common/testtype"
+	"github.com/wNee/mongo-tools/mongostat/stat_consumer/line"
+	"github.com/wNee/mongo-tools/mongostat/status"
 	. "github.com/smartystreets/goconvey/convey"
 	"gopkg.in/mgo.v2/bson"
 )

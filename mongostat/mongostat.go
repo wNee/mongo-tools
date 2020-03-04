@@ -12,12 +12,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/mongodb/mongo-tools/common/db"
-	"github.com/mongodb/mongo-tools/common/log"
-	"github.com/mongodb/mongo-tools/common/options"
-	"github.com/mongodb/mongo-tools/mongostat/stat_consumer"
-	"github.com/mongodb/mongo-tools/mongostat/stat_consumer/line"
-	"github.com/mongodb/mongo-tools/mongostat/status"
+	"github.com/wNee/mongo-tools/common/db"
+	"github.com/wNee/mongo-tools/common/log"
+	"github.com/wNee/mongo-tools/common/options"
+	"github.com/wNee/mongo-tools/mongostat/stat_consumer"
+	"github.com/wNee/mongo-tools/mongostat/stat_consumer/line"
+	"github.com/wNee/mongo-tools/mongostat/status"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )

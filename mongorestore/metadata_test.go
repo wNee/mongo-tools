@@ -9,10 +9,10 @@ package mongorestore
 import (
 	"testing"
 
-	"github.com/mongodb/mongo-tools/common/intents"
-	commonOpts "github.com/mongodb/mongo-tools/common/options"
-	"github.com/mongodb/mongo-tools/common/testtype"
-	"github.com/mongodb/mongo-tools/common/testutil"
+	"github.com/wNee/mongo-tools/common/intents"
+	commonOpts "github.com/wNee/mongo-tools/common/options"
+	"github.com/wNee/mongo-tools/common/testtype"
+	"github.com/wNee/mongo-tools/common/testutil"
 	. "github.com/smartystreets/goconvey/convey"
 	"gopkg.in/mgo.v2/bson"
 )

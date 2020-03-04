@@ -9,7 +9,7 @@ package db
 import (
 	"fmt"
 
-	"github.com/mongodb/mongo-tools/common/json"
+	"github.com/wNee/mongo-tools/common/json"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )

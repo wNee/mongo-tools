@@ -17,7 +17,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mongodb/mongo-tools/mongoimport/dateconv"
+	"github.com/wNee/mongo-tools/mongoimport/dateconv"
 	"gopkg.in/mgo.v2/bson"
 )
 

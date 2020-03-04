@@ -10,10 +10,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mongodb/mongo-tools/common/db"
-	"github.com/mongodb/mongo-tools/common/options"
-	"github.com/mongodb/mongo-tools/common/testtype"
-	"github.com/mongodb/mongo-tools/common/testutil"
+	"github.com/wNee/mongo-tools/common/db"
+	"github.com/wNee/mongo-tools/common/options"
+	"github.com/wNee/mongo-tools/common/testtype"
+	"github.com/wNee/mongo-tools/common/testutil"
 	. "github.com/smartystreets/goconvey/convey"
 	"gopkg.in/mgo.v2"
 )

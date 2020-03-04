@@ -17,7 +17,7 @@ import (
 )
 
 // CommandOp is a struct for parsing OP_COMMAND as defined here:
-// https://github.com/mongodb/mongo/blob/master/src/mongo/rpc/command_request.h.
+// https://github.com/wNee/mongo/blob/master/src/mongo/rpc/command_request.h.
 type CommandOp struct {
 	Header MsgHeader
 	mgo.CommandOp

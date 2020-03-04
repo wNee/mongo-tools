@@ -18,7 +18,7 @@ import (
 
 	mgo "github.com/10gen/llmgo"
 	bson "github.com/10gen/llmgo/bson"
-	"github.com/mongodb/mongo-tools/common/json"
+	"github.com/wNee/mongo-tools/common/json"
 )
 
 var (

@@ -11,7 +11,7 @@ package kerberos
 // #cgo windows LDFLAGS: -Lc:/sasl/lib
 
 import (
-	"github.com/mongodb/mongo-tools/common/options"
+	"github.com/wNee/mongo-tools/common/options"
 	"gopkg.in/mgo.v2"
 )
 

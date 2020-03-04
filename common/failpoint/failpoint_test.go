@@ -11,7 +11,7 @@ package failpoint
 import (
 	"testing"
 
-	"github.com/mongodb/mongo-tools/common/testtype"
+	"github.com/wNee/mongo-tools/common/testtype"
 	. "github.com/smartystreets/goconvey/convey"
 )
 

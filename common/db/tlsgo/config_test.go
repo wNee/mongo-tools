@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mongodb/mongo-tools/common/testtype"
+	"github.com/wNee/mongo-tools/common/testtype"
 )
 
 func TestAddClientCert(t *testing.T) {

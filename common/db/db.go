@@ -9,8 +9,8 @@
 package db
 
 import (
-	"github.com/mongodb/mongo-tools/common/options"
-	"github.com/mongodb/mongo-tools/common/password"
+	"github.com/wNee/mongo-tools/common/options"
+	"github.com/wNee/mongo-tools/common/password"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 

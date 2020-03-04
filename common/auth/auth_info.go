@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/mongodb/mongo-tools/common/db"
+	"github.com/wNee/mongo-tools/common/db"
 	"gopkg.in/mgo.v2/bson"
 )
 

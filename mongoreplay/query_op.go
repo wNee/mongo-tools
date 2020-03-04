@@ -14,7 +14,7 @@ import (
 
 	mgo "github.com/10gen/llmgo"
 	"github.com/10gen/llmgo/bson"
-	"github.com/mongodb/mongo-tools/common/json"
+	"github.com/wNee/mongo-tools/common/json"
 )
 
 // QueryOp is used to query the database for documents in a collection.

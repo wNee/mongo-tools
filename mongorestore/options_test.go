@@ -10,8 +10,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/mongodb/mongo-tools/common/db"
-	"github.com/mongodb/mongo-tools/common/options"
+	"github.com/wNee/mongo-tools/common/db"
+	"github.com/wNee/mongo-tools/common/options"
 	. "github.com/smartystreets/goconvey/convey"
 )
 

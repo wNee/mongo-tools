@@ -7,7 +7,7 @@
 package db
 
 import (
-	"github.com/mongodb/mongo-tools/common/connstring"
+	"github.com/wNee/mongo-tools/common/connstring"
 	. "github.com/smartystreets/goconvey/convey"
 
 	"fmt"

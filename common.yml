@@ -294,7 +294,7 @@ functions:
     command: shell.exec
     type: test
     params:
-      working_dir: src/github.com/mongodb/mongo-tools
+      working_dir: src/github.com/wNee/mongo-tools
       script: |
         set -x
         set -v
@@ -308,7 +308,7 @@ functions:
     command: shell.exec
     type: test
     params:
-      working_dir: src/github.com/mongodb/mongo-tools
+      working_dir: src/github.com/wNee/mongo-tools
       script: |
         set -x
         set -v
@@ -324,7 +324,7 @@ functions:
     command: shell.exec
     type: test
     params:
-      working_dir: src/github.com/mongodb/mongo-tools
+      working_dir: src/github.com/wNee/mongo-tools
       script: |
         set -x
         set -v
@@ -351,7 +351,7 @@ functions:
   "download mongod":
     command: shell.exec
     params:
-      working_dir: src/github.com/mongodb/mongo-tools
+      working_dir: src/github.com/wNee/mongo-tools
       script: |
         set -x
         set -v
@@ -380,14 +380,14 @@ functions:
       bucket: mciuploads
       aws_key: ${aws_key}
       aws_secret: ${aws_secret}
-      local_file: src/github.com/mongodb/mongo-tools/bin/${tool}${extension}
+      local_file: src/github.com/wNee/mongo-tools/bin/${tool}${extension}
       remote_file: mongo-tools/binaries/${build_id}/${edition|community}/${tool}${extension}
 
   "generate coverage html + text":
     command: shell.exec
     type: test
     params:
-      working_dir: src/github.com/mongodb/mongo-tools
+      working_dir: src/github.com/wNee/mongo-tools
       script: |
         set -x
         set -v
@@ -409,7 +409,7 @@ functions:
   "move coverage data":
     command: shell.exec
     params:
-      working_dir: src/github.com/mongodb/mongo-tools
+      working_dir: src/github.com/wNee/mongo-tools
       script: |
         set -x
         set -v
@@ -422,7 +422,7 @@ functions:
     command: shell.exec
     type: test
     params:
-      working_dir: src/github.com/mongodb/mongo-tools
+      working_dir: src/github.com/wNee/mongo-tools
       script: |
         # export sensitive info before `set -x`
         export MONGODB_KERBEROS_PASSWORD=${kerberos_password}
@@ -444,7 +444,7 @@ functions:
   "setup integration test":
     command: shell.exec
     params:
-      working_dir: src/github.com/mongodb/mongo-tools
+      working_dir: src/github.com/wNee/mongo-tools
       # Set up Kerberos stuff: run kinit if necessary, and add KDC to registry
       # on Windows (see https://wiki.mongodb.com/display/DH/Testing+Kerberos)
       script: |
@@ -471,7 +471,7 @@ functions:
     command: shell.exec
     type: test
     params:
-      working_dir: src/github.com/mongodb/mongo-tools
+      working_dir: src/github.com/wNee/mongo-tools
       script: |
         set -x
         set -v
@@ -520,7 +520,7 @@ functions:
     command: shell.exec
     type: test
     params:
-      working_dir: src/github.com/mongodb/mongo-tools
+      working_dir: src/github.com/wNee/mongo-tools
       script: |
         # export sensitive info before `set -x`
         if [ "Windows_NT" = "$OS" ]; then
@@ -559,7 +559,7 @@ functions:
     command: shell.exec
     type: test
     params:
-      working_dir: src/github.com/mongodb/mongo-tools
+      working_dir: src/github.com/wNee/mongo-tools
       script: |
         set -x
         set -v
@@ -587,7 +587,7 @@ functions:
     params:
       aws_key: ${aws_key}
       aws_secret: ${aws_secret}
-      local_file: src/github.com/mongodb/mongo-tools/${coverage_pkg}/coverage_${coverage_pkg}.html
+      local_file: src/github.com/wNee/mongo-tools/${coverage_pkg}/coverage_${coverage_pkg}.html
       remote_file: mongo-tools/coverage/${coverage_pkg}/${task_id}.html
       bucket: mciuploads
       permissions: public-read
@@ -600,7 +600,7 @@ functions:
     params:
       aws_key: ${aws_key}
       aws_secret: ${aws_secret}
-      local_file: src/github.com/mongodb/mongo-tools/${coverage_pkg}/coverage_${coverage_pkg}.txt
+      local_file: src/github.com/wNee/mongo-tools/${coverage_pkg}/coverage_${coverage_pkg}.txt
       remote_file: mongo-tools/coverage/${coverage_pkg}/${task_id}.txt
       bucket: mciuploads
       permissions: public-read
@@ -611,7 +611,7 @@ functions:
   "setup credentials" :
     command: shell.exec
     params:
-      working_dir: src/github.com/mongodb/mongo-tools
+      working_dir: src/github.com/wNee/mongo-tools
       silent: true
       script: |
         set -x
@@ -631,7 +631,7 @@ functions:
   "start mongod":
     command: shell.exec
     params:
-      working_dir: src/github.com/mongodb/mongo-tools
+      working_dir: src/github.com/wNee/mongo-tools
       background: true
       script: |
         set -x
@@ -645,7 +645,7 @@ functions:
   "wait for mongod to be ready":
     command: shell.exec
     params:
-      working_dir: src/github.com/mongodb/mongo-tools
+      working_dir: src/github.com/wNee/mongo-tools
       script: |
         set -x
         set -v
@@ -672,7 +672,7 @@ functions:
     params:
       aws_key: ${aws_key}
       aws_secret: ${aws_secret}
-      local_file: src/github.com/mongodb/mongo-tools/bin/${tool}
+      local_file: src/github.com/wNee/mongo-tools/bin/${tool}
       remote_file: mongo-tools/binaries/${build_id}/${edition|community}/${tool}${extension}
       bucket: mciuploads
       permissions: public-read
@@ -689,13 +689,13 @@ functions:
           mkdir -p src/github.com/mongodb
     - command: git.get_project
       params:
-        directory: src/github.com/mongodb/mongo-tools
+        directory: src/github.com/wNee/mongo-tools
     - command: git.apply_patch
       params:
-        directory: src/github.com/mongodb/mongo-tools
+        directory: src/github.com/wNee/mongo-tools
     - command: shell.exec
       params:
-        working_dir: src/github.com/mongodb/mongo-tools
+        working_dir: src/github.com/wNee/mongo-tools
         script: |
           set -x
           set -v
@@ -707,7 +707,7 @@ functions:
     params:
       aws_key: ${aws_key}
       aws_secret: ${aws_secret}
-      local_file: src/github.com/mongodb/mongo-tools/${filename}
+      local_file: src/github.com/wNee/mongo-tools/${filename}
       remote_file: mongo-tools/mongoreplay/archive/${build_id}/${filename}
       bucket: mciuploads
       permissions: public-read
@@ -717,7 +717,7 @@ functions:
   "create timeseries" :
     command: shell.exec
     params:
-      working_dir: src/github.com/mongodb/mongo-tools
+      working_dir: src/github.com/wNee/mongo-tools
       script: |
         set -x
         set -v
@@ -731,7 +731,7 @@ functions:
     params:
       aws_key: ${aws_key}
       aws_secret: ${aws_secret}
-      local_file: src/github.com/mongodb/mongo-tools/timeseries.html
+      local_file: src/github.com/wNee/mongo-tools/timeseries.html
       remote_file: mongo-tools/mongoreplay/timeseries/${build_id}/timeseries.html
       bucket: mciuploads
       permissions: public-read
@@ -744,14 +744,14 @@ functions:
         bucket: boxes.10gen.com
         aws_key: ${aws_key}
         aws_secret: ${aws_secret}
-        local_file: src/github.com/mongodb/mongo-tools/mongoreplay/testPcap/${pcapFname}
+        local_file: src/github.com/wNee/mongo-tools/mongoreplay/testPcap/${pcapFname}
         remote_file: build/mongotape/${pcapFname}
 
   "fetch ftdc" :
   - command: shell.exec
     type: test
     params:
-      working_dir: src/github.com/mongodb/mongo-tools
+      working_dir: src/github.com/wNee/mongo-tools
       script: |
         set -x
         set -v
@@ -761,7 +761,7 @@ functions:
   "create auth_user" :
   - command: shell.exec
     params:
-      working_dir: src/github.com/mongodb/mongo-tools
+      working_dir: src/github.com/wNee/mongo-tools
       script: |
         set -x
         set -v
@@ -771,7 +771,7 @@ functions:
   "create sharded_cluster" :
     - command: shell.exec
       params:
-        working_dir: src/github.com/mongodb/mongo-tools
+        working_dir: src/github.com/wNee/mongo-tools
         background: true
         script: |
           set -x
@@ -782,7 +782,7 @@ functions:
           PATH=./bin:$PATH ./bin/mongo --nodb --eval 'var d = new ShardingTest({shards:3, mongos:[{port:${mongod_port}}]}); while(true){sleep(1000)}' 
     - command: shell.exec
       params:
-        working_dir: src/github.com/mongodb/mongo-tools
+        working_dir: src/github.com/wNee/mongo-tools
         script: |
           set -x
           set -v
@@ -792,7 +792,7 @@ functions:
   "create repl_set" :
     - command: shell.exec
       params:
-        working_dir: src/github.com/mongodb/mongo-tools
+        working_dir: src/github.com/wNee/mongo-tools
         background: true
         script: |
           set -x
@@ -803,7 +803,7 @@ functions:
           PATH=./bin:$PATH ./bin/mongo --nodb --eval 'TestData = new Object(); TestData.minPort="${mongod_port}"; var repl = new ReplSetTest({nodes:3, name:"repltester"});repl.startSet();repl.initiate();repl.awaitSecondaryNodes();while(true){sleep(1000);}'
     - command: shell.exec
       params:
-        working_dir: src/github.com/mongodb/mongo-tools
+        working_dir: src/github.com/wNee/mongo-tools
         script: |
           set -x
           set -v
@@ -814,7 +814,7 @@ functions:
   - command: shell.exec
     type: test
     params:
-      working_dir: src/github.com/mongodb/mongo-tools
+      working_dir: src/github.com/wNee/mongo-tools
       script: |
         set -x
         set -v
@@ -838,7 +838,7 @@ pre:
 post:
   - command: attach.results
     params:
-      file_location: src/github.com/mongodb/mongo-tools/report.json
+      file_location: src/github.com/wNee/mongo-tools/report.json
   - command: shell.exec
     params:
       silent: true
@@ -849,7 +849,7 @@ post:
         exit 0
   - command: gotest.parse_files
     params:
-      files: ["src/github.com/mongodb/mongo-tools/*.suite"]
+      files: ["src/github.com/wNee/mongo-tools/*.suite"]
   - command: shell.exec
     params:
       script: |
@@ -1046,7 +1046,7 @@ tasks:
     - command: shell.exec
       type: test
       params:
-        working_dir: src/github.com/mongodb/mongo-tools
+        working_dir: src/github.com/wNee/mongo-tools
         script: |
           set -x
           set -v
@@ -1062,7 +1062,7 @@ tasks:
     - command: shell.exec
       type: test
       params:
-        working_dir: src/github.com/mongodb/mongo-tools
+        working_dir: src/github.com/wNee/mongo-tools
         script: |
           set -x
           set -v
@@ -1264,7 +1264,7 @@ tasks:
     - command: shell.exec
       type: test
       params:
-        working_dir: src/github.com/mongodb/mongo-tools/test/qa-tests
+        working_dir: src/github.com/wNee/mongo-tools/test/qa-tests
         script: |
           set -x
           set -v
@@ -1410,7 +1410,7 @@ tasks:
     - command: shell.exec
       type: test
       params:
-        working_dir: src/github.com/mongodb/mongo-tools
+        working_dir: src/github.com/wNee/mongo-tools
         script: |
           set -x
           set -v
@@ -1443,7 +1443,7 @@ tasks:
   - func: "wait for mongod to be ready"
   - command: shell.exec
     params:
-      working_dir: src/github.com/mongodb/mongo-tools
+      working_dir: src/github.com/wNee/mongo-tools
       script: |
         set -x
         set -v
@@ -1475,7 +1475,7 @@ tasks:
     vars:
         filename: playtest
         environment_vars: DB_PORT=${mongod_port}
-        additional_args: github.com/mongodb/mongo-tools/mongoreplay
+        additional_args: github.com/wNee/mongo-tools/mongoreplay
 
 - name: replay-sharded_test
   depends_on:
@@ -1499,7 +1499,7 @@ tasks:
     vars:
         filename: sharded
         environment_vars: DB_PORT=${mongod_port}
-        additional_args: github.com/mongodb/mongo-tools/mongoreplay --run "LiveDB"
+        additional_args: github.com/wNee/mongo-tools/mongoreplay --run "LiveDB"
 
 - name: replay-auth_test
   depends_on:
@@ -1529,7 +1529,7 @@ tasks:
     vars:
         filename: authtest
         environment_vars: AUTH=1 DB_PORT=${mongod_port}
-        additional_args: github.com/mongodb/mongo-tools/mongoreplay --run "(LiveDB)|(Authed)"
+        additional_args: github.com/wNee/mongo-tools/mongoreplay --run "(LiveDB)|(Authed)"
 
 - name: replay-repl_test
   depends_on:
@@ -1555,7 +1555,7 @@ tasks:
     vars:
         filename: repltest
         environment_vars: DB_PORT=${mongod_port}
-        additional_args: github.com/mongodb/mongo-tools/mongoreplay --run "LiveDB"
+        additional_args: github.com/wNee/mongo-tools/mongoreplay --run "LiveDB"
 
 - name: replay-replay_test
   depends_on:
@@ -1571,7 +1571,7 @@ tasks:
   - func: "fetch ftdc"
   - command: shell.exec
     params:
-      working_dir: src/github.com/mongodb/mongo-tools
+      working_dir: src/github.com/wNee/mongo-tools
       script: |
         set -x
         set -v
@@ -1581,7 +1581,7 @@ tasks:
         PATH=$PATH:$PWD/bin:$PWD/vendor/bin ./mongoreplay/replay_test.sh --verbose --explicit --keep
   - command: shell.exec
     params:
-      working_dir: src/github.com/mongodb/mongo-tools
+      working_dir: src/github.com/wNee/mongo-tools
       script: |
         set -x
         set -v

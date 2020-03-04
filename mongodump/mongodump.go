@@ -8,17 +8,17 @@
 package mongodump
 
 import (
-	"github.com/mongodb/mongo-tools/common/archive"
-	"github.com/mongodb/mongo-tools/common/auth"
-	"github.com/mongodb/mongo-tools/common/bsonutil"
-	"github.com/mongodb/mongo-tools/common/db"
-	"github.com/mongodb/mongo-tools/common/failpoint"
-	"github.com/mongodb/mongo-tools/common/intents"
-	"github.com/mongodb/mongo-tools/common/json"
-	"github.com/mongodb/mongo-tools/common/log"
-	"github.com/mongodb/mongo-tools/common/options"
-	"github.com/mongodb/mongo-tools/common/progress"
-	"github.com/mongodb/mongo-tools/common/util"
+	"github.com/wNee/mongo-tools/common/archive"
+	"github.com/wNee/mongo-tools/common/auth"
+	"github.com/wNee/mongo-tools/common/bsonutil"
+	"github.com/wNee/mongo-tools/common/db"
+	"github.com/wNee/mongo-tools/common/failpoint"
+	"github.com/wNee/mongo-tools/common/intents"
+	"github.com/wNee/mongo-tools/common/json"
+	"github.com/wNee/mongo-tools/common/log"
+	"github.com/wNee/mongo-tools/common/options"
+	"github.com/wNee/mongo-tools/common/progress"
+	"github.com/wNee/mongo-tools/common/util"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 
