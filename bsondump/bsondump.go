@@ -313,3 +313,37 @@ func (bd *BSONDump) HeadTailTimestamp() ([]OplogTimestamp, error) {
 	}
 	return opResult, nil
 }
+
+// HeadTimestamp iterates only through the BSON file with timestamp, such as oplog.bson
+// It returns head timestamp with vaild timestamp
+func (bd *BSONDump) HeadTimestamp() (*OplogTimestamp, error) {
+	opResult := &OplogTimestamp{}
+	if bd.InputSource == nil {
+		panic("Tried to call JSON() before opening file")
+	}
+
+	for {
+		result := bson.Raw(bd.InputSource.LoadNext())
+		if result == nil {
+			break
+		}
+
+		if bytes, err := formatJSON(&result, bd.OutputOptions.Pretty); err != nil {
+			//if objcheck is turned on, stop now. otherwise keep on dumpin'
+			if bd.OutputOptions.ObjCheck {
+			 	return nil, err
+			}
+		} else {
+
+			err := json.Unmarshal(bytes, opResult)
+			if err != nil {
+				continue
+			}
+			if opResult.Ts.Timestamp.T != 0 {
+				return opResult, nil
+			}
+		}
+	}
+	return opResult, nil
+}
+
